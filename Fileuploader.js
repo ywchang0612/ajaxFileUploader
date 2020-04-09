@@ -1,7 +1,7 @@
 function FileUploader(file) {
     const KB = 1024;
     const MB = 1024 * KB;
-    const CHUNK_SIZE = 256 * MB;
+    const CHUNK_SIZE = 20 * MB;
 
     if (!(file instanceof Blob)) {
         throw "not a Blob file";
@@ -17,6 +17,7 @@ function FileUploader(file) {
     };
 
     this.upload = function () {
+
         if (this._shouldChunk()) {
             this.sliceUpload()
         } else {
